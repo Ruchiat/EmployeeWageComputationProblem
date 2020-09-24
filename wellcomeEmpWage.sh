@@ -17,6 +17,11 @@ fi;
 EMPLOYEE_PER_HOUR_WAGE=20; 
 FULL_DAY_HOUR=8;
 
+MAX_WORKING_DAYS=20;
+MAX_WORKING_HOURS=100;
+
+totalWorkingHrs=0;
+workingDays=1;
 
 function getWorkHours() {
 	case $1 in 
@@ -29,17 +34,18 @@ function getWorkHours() {
 
 
 #calculation for daily wage
-if [ $value == 1 ] 
-then
-	resWorkDonePerDay=$( getWorkHours $(($RANDOM%3)) );
 
-	dailyWage=$((EMPLOYEE_PER_HOUR_WAGE * $resWorkDonePerDay));
+while [[ $totalWorkingHrs -lt $MAX_WORKING_HOURS && $workingDays -lt $MAX_WORKING_DAYS ]]
+do
 	
-	monthWages=$(($dailyWage * $(($RANDOM%20)) ))
-	echo "Daily Wage For an Employee is :"$dailyWage;
-	echo "Month Wages For Month : " $monthWages;
+	resWorkDonePerDay=$( getWorkHours $((RANDOM%3)) );
+	#keep calculating the wage
+	wage=$((resWorkDonePerDay * EMPLOYEE_PER_HOUR_WAGE));
+	finalWage=$((finalWage + wage));
+	totalWorkingHrs=$((totalWorkingHrs + resWorkDonePerDay));
+	workingDays=$((workingDays + 1));
+done
 
-else 
+echo "Total Salary for the employee is :"$finalWage;
 
-	echo "Empwage cannot be calculated for absent employee";
-fi;
+
