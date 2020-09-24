@@ -14,6 +14,8 @@ else
 
 fi;
 
+declare -i workDonePerDay
+
 EMPLOYEE_PER_HOUR_WAGE=20; 
 FULL_DAY_HOUR=8;
 
@@ -44,6 +46,8 @@ do
 	finalWage=$((finalWage + wage));
 	totalWorkingHrs=$((totalWorkingHrs + resWorkDonePerDay));
 	workingDays=$((workingDays + 1));
+	workDonePerDay[$workingDays]=$finalWage;
+
 done
 
 echo "Total Salary for the employee is :"$finalWage;
