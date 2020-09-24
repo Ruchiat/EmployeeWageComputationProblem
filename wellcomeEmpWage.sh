@@ -31,10 +31,13 @@ function getWorkHours() {
 #calculation for daily wage
 if [ $value == 1 ] 
 then
-	resWorkDonePerDay=$( getWorkHours $((RANDOM%3)) );
+	resWorkDonePerDay=$( getWorkHours $(($RANDOM%3)) );
 
-	dailyWage=$((EMPLOYEE_PER_HOUR_WAGE * $resWorkDonePerDay)); 
+	dailyWage=$((EMPLOYEE_PER_HOUR_WAGE * $resWorkDonePerDay));
+	
+	monthWages=$(($dailyWage * $(($RANDOM%20)) ))
 	echo "Daily Wage For an Employee is :"$dailyWage;
+	echo "Month Wages For Month : " $monthWages;
 
 else 
 
