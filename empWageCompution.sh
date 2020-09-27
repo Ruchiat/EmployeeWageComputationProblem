@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-
 echo "WELCOME TO EMPLOYEE WAGE COMPUTION PROGRAM"; 
 
+#random function for check employee is absent or present
 
 value=$((RANDOM%2)); 
 echo $value; 
@@ -16,17 +16,18 @@ else
 
 fi;
 
-declare -i workDonePerDay
-
+#constant
 EMPLOYEE_PER_HOUR_WAGE=20; 
 FULL_DAY_HOUR=8;
-
 MAX_WORKING_DAYS=20;
 MAX_WORKING_HOURS=100;
 
+#declaration
+declare -i workDonePerDay
 totalWorkingHrs=0;
 workingDays=1;
 
+#switch Case for employee workHours
 function getWorkHours() {
 	case $1 in 
 		1) workHours=4;;
